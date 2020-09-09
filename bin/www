@@ -9,7 +9,8 @@ const debug = require('debug')('demo:server');
 const http = require('http');
 const os  = require('os').networkInterfaces();
 
-function getIPAdress() {
+// 获取本机IP地址
+function getAddress() {
     let interfaces = os;
 
     for (let devName in interfaces) {
@@ -23,7 +24,7 @@ function getIPAdress() {
     }
 }
 
-let ip = getIPAdress(); // 获取本机IP地址
+let ip = getAddress();
 
 
 /**
