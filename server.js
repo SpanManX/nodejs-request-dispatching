@@ -17,7 +17,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-let path = `${os.tmpdir()}\\proxy-config.json`;  // 文件路径
+let path = `${os.userInfo().homedir}\\proxy-config.json`;  // 文件路径
 
 fs.readFile(path, function (err, data) {
     // 有proxy-config.json文件就读取，没有就写入
