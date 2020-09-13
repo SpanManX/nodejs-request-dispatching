@@ -9,7 +9,22 @@ const debug = require('debug')('demo:server');
 const http = require('http');
 const os  = require('os').networkInterfaces();
 
-let ip = os['以太网'] ? os['以太网'][0].address : '127.0.0.1'; // 获取本机IP地址
+// 获取本机IP地址
+function getAddress() {
+    let interfaces = os;
+
+    for (let devName in interfaces) {
+        let iface = interfaces[devName];
+        for (let i = 0; i < iface.length; i++) {
+            let alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+}
+
+let ip = getAddress();
 
 
 /**
